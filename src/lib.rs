@@ -86,14 +86,16 @@ impl AsyncLogger {
     }
 }
 
-pub(crate) fn current_thread_name() -> String {
+#[doc(hidden)]
+pub fn current_thread_name() -> String {
     match std::thread::current().name() {
         Some(name) => name.into(),
         _ => format!("{:?}", std::thread::current().id()),
     }
 }
 
-pub(crate) fn now() -> String {
+#[doc(hidden)]
+pub fn now() -> String {
         chrono::Local::now().format("%Y/%m/%d-%H:%M:%S%.6f").to_string()
 }
 
