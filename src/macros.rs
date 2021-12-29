@@ -1,13 +1,13 @@
 #[macro_export]
 macro_rules! log {
     ($n:expr, $log:expr, $fmt:expr, $($msg:expr),* $(,)?) => {{
-        let dt = ::chrono::Local::now().format("%Y%m%d-%H:%M:%S%.6f");
+        let dt = $crate::now();
         let tn = $crate::current_thread_name();
         let s = format!($fmt, $($msg),*);
         $log.log($n, format!("{} [{}] [{}] |{}:{}| {}\n", dt, $n, tn, file!(), line!(), s))
     }};
     ($n:expr, $log:expr, $fmt:expr $(,)?) => {{
-        let dt = ::chrono::Local::now().format("%Y%m%d-%H:%M:%S%.6f");
+        let dt = $crate::now();
         let tn = $crate::current_thread_name();
         let s = format!($fmt);
         $log.log($n, format!("{} [{}] [{}] |{}:{}| {}\n", dt, $n, tn, file!(), line!(), s))

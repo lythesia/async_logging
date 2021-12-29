@@ -93,6 +93,10 @@ pub(crate) fn current_thread_name() -> String {
     }
 }
 
+pub(crate) fn now() -> String {
+        chrono::Local::now().format("%Y/%m/%d-%H:%M:%S%.6f").to_string()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
